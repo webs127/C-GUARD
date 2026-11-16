@@ -1,6 +1,8 @@
 import 'package:c_guard/feature/authentication/presentation/account_created.dart';
 import 'package:c_guard/feature/authentication/presentation/authentication.dart';
 import 'package:c_guard/feature/emergency/presentation/emergency.dart';
+import 'package:c_guard/feature/live-tracking/presentation/live_tracking.dart';
+import 'package:c_guard/feature/live-tracking/presentation/map_view.dart';
 import 'package:c_guard/feature/navigation/history/presentation/history.dart';
 import 'package:c_guard/feature/navigation/home/presentation/home.dart';
 import 'package:c_guard/feature/navigation/journey/presentation/journey.dart';
@@ -118,24 +120,24 @@ class AppRouter {
         path: '/home',
         name: RouteConstants.home,
         routes: [
-                GoRoute(
-        path: '/emergency',
-        name: RouteConstants.emergency,
-        pageBuilder: (context, state) {
-          return CustomTransitionPage(
-            key: state.pageKey,
-            child: const EmergencyScreen(),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-                  return FadeTransition(
-                    opacity: CurveTween(curve: Curves.easeInOutCirc)
-                        .animate(animation),
-                    child: child,
-                  );
-                },
-          );
-        },
-      ),
+          GoRoute(
+            path: '/emergency',
+            name: RouteConstants.emergency,
+            pageBuilder: (context, state) {
+              return CustomTransitionPage(
+                key: state.pageKey,
+                child: const EmergencyScreen(),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                        opacity: CurveTween(curve: Curves.easeInOutCirc)
+                            .animate(animation),
+                        child: child,
+                      );
+                    },
+              );
+            },
+          ),
         ],
         pageBuilder: (context, state) {
           return CustomTransitionPage(
@@ -158,6 +160,46 @@ class AppRouter {
           GoRoute(
             path: '/review-journey',
             name: RouteConstants.reviewJourney,
+            routes: [
+              GoRoute(
+                path: '/live-tracking',
+                name: RouteConstants.liveTracking,
+                routes: [
+                  GoRoute(
+                    path: '/map-view',
+                    name: RouteConstants.mapView,
+                    pageBuilder: (context, state) {
+                      return CustomTransitionPage(
+                        key: state.pageKey,
+                        child: const FullMapView(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                              return FadeTransition(
+                                opacity: CurveTween(curve: Curves.easeInOutCirc)
+                                    .animate(animation),
+                                child: child,
+                              );
+                            },
+                      );
+                    },
+                  ),
+                ],
+                pageBuilder: (context, state) {
+                  return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: const LiveTrackingScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                          return FadeTransition(
+                            opacity: CurveTween(curve: Curves.easeInOutCirc)
+                                .animate(animation),
+                            child: child,
+                          );
+                        },
+                  );
+                },
+              ),
+            ],
             pageBuilder: (context, state) {
               return CustomTransitionPage(
                 key: state.pageKey,

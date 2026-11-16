@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 
 class InfoWidget extends StatelessWidget {
   final String text;
-  final IconData icon;
+  final IconData? icon;
   final Color? fill;
   final Color? border;
   final Color? textColor;
   const InfoWidget({
     super.key,
     required this.text,
-    required this.icon,
+    this.icon,
     this.fill,
     this.border,
     this.textColor,
@@ -29,7 +29,7 @@ class InfoWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 8,
         children: [
-          Icon(icon, size: 14),
+          Icon(icon ?? Icons.info_outline, size: 14),
           Flexible(
             child: Text(
               text,

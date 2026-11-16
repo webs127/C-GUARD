@@ -10,5 +10,7 @@ class RouteConstants {
     static String profile = '/profile';
     static String emergency = '/home/emergency';
     static String reviewJourney = '/journey/review-journey';
+    static String liveTracking = '/journey/review-journey/live-tracking';
+    static String mapView = '/journey/review-journey/live-tracking/map-view';
 
 }

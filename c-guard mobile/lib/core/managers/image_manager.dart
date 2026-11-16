@@ -7,4 +7,7 @@ class ImageManager {
   static const String onboarding1 = "assets/images/svg/onboarding 1.svg";
   static const String onboarding2 = "assets/images/svg/onboarding 2.svg";
   static const String onboarding3 = "assets/images/svg/onboarding 3.svg";
+  static const String check = "assets/images/svg/check.svg";
+  static const String message = "assets/images/svg/message.svg";
+  static const String route = "assets/images/svg/route.svg";
 }
