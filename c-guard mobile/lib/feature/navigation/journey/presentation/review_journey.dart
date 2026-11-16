@@ -1,9 +1,11 @@
+import 'package:c_guard/app/router/route_constants.dart';
 import 'package:c_guard/core/managers/color_manager.dart';
 import 'package:c_guard/feature/authentication/widgets/custom_background.dart';
 import 'package:c_guard/feature/navigation/journey/widgets/details_confirmation_card.dart';
 import 'package:c_guard/feature/navigation/journey/widgets/requirement_card.dart';
 import 'package:c_guard/feature/widgets/info_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class ReviewJourneyScreen extends StatefulWidget {
@@ -111,7 +113,9 @@ class _ReviewJourneyScreenState extends State<ReviewJourneyScreen> {
                     ),
                     SizedBox(height: 24),
                     MaterialButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.pushNamed(RouteConstants.liveTracking);
+                      },
                       padding: EdgeInsets.all(18),
                       shape: OutlineInputBorder(
                         borderSide: BorderSide.none,
