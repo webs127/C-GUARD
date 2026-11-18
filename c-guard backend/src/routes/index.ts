@@ -7,6 +7,7 @@ import {
   corpsMemberRouter,
   emergencyContactRouter,
 } from '../modules/corps-members/corps-member.routes';
+import { journeyRouter } from '../modules/journeys/journey.routes';
 import { personnelRouter } from '../modules/personnel/personnel.routes';
 import { rbacRouter } from '../modules/rbac/rbac.routes';
 
@@ -17,6 +18,7 @@ apiRouter.use('/corps-members', corpsMemberRouter);
 apiRouter.use('/emergency-contacts', emergencyContactRouter);
 apiRouter.use('/personnel', personnelRouter);
 apiRouter.use('/camps', campRouter);
+apiRouter.use('/journeys', journeyRouter);
 apiRouter.use('/rbac', rbacRouter);
 
 apiRouter.get('/health', async (_req, res, next) => {

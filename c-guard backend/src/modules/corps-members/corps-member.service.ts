@@ -83,6 +83,10 @@ async function requireCorpsMemberProfile(
   return profile;
 }
 
+export async function isCorpsMember(userId: string): Promise<boolean> {
+  return corpsMemberRepository.corpsMemberExists(userId);
+}
+
 export async function getMyProfile(userId: string): Promise<CorpsMemberProfile> {
   const profile = await requireCorpsMemberProfile(userId);
   return mapProfile(profile);
