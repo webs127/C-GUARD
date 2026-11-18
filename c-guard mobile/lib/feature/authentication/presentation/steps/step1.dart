@@ -1,11 +1,11 @@
 import 'package:c_guard/core/managers/color_manager.dart';
 import 'package:c_guard/feature/authentication/widgets/custom_textformField.dart';
+import 'package:c_guard/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AuthStep1 extends StatelessWidget {
-  const new({
-    super.key,
-  });
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,26 +23,39 @@ class AuthStep1 extends StatelessWidget {
         SizedBox(height: 19),
         Text(
           "Create your account to get started with journey monitoring",
-          style: TextStyle(
-            color: ColorManager.grey,
-            fontSize: 16,
-          ),
+          style: TextStyle(color: ColorManager.grey, fontSize: 16),
         ),
         SizedBox(height: 40),
-        Form(
-          child: Column(
-            spacing: 20,
-            children: [
-              CustomTextFormField(
-                prefix: Icon(Icons.person_outline),
-              ),
-              CustomTextFormField(
-                label: "EMAIL ADDRESS",
-                hintText: "davidshittu@gmail.com",
-                prefix: Icon(Icons.mail_outline),
-              ),
-            ],
-          ),
+        Consumer<AuthProvider>(
+          builder: (context, state, _) {
+            return Column(
+              spacing: 20,
+              children: [
+                CustomTextFormField(
+                  controller: state.fullname,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Required";
+                    }
+                    return null;
+                  },
+                  prefix: Icon(Icons.person_outline),
+                ),
+                CustomTextFormField(
+                  label: "EMAIL ADDRESS",
+                  controller: state.email,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Required";
+                    }
+                    return null;
+                  },
+                  hintText: "davidshittu@gmail.com",
+                  prefix: Icon(Icons.mail_outline),
+                ),
+              ],
+            );
+          },
         ),
         SizedBox(height: 17),
         Container(

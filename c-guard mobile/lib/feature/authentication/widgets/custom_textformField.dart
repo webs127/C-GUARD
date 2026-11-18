@@ -9,6 +9,8 @@ class CustomTextFormField extends StatelessWidget {
   final String? hintText;
   final VoidCallback? onTap;
   final bool obscureText;
+  final String? Function(String?)? validator;
+  final Function(String)? onChanged;
   final TextEditingController? controller;
   const CustomTextFormField({
     super.key,
@@ -19,7 +21,7 @@ class CustomTextFormField extends StatelessWidget {
     this.controller,
     this.obscureText = false,
     this.enabled,
-    this.onTap,
+    this.onTap, this.validator, this.onChanged,
   });
 
   @override
@@ -40,6 +42,9 @@ class CustomTextFormField extends StatelessWidget {
         TextFormField(
           controller: controller,
           enabled: enabled,
+          validator: validator,
+          onChanged: onChanged,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           onTap: onTap,
           cursorColor: ColorManager.blue,
           obscureText: obscureText,

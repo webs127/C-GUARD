@@ -1,6 +1,8 @@
 import 'package:c_guard/core/managers/color_manager.dart';
 import 'package:c_guard/feature/authentication/widgets/custom_textformField.dart';
+import 'package:c_guard/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AuthStep4 extends StatelessWidget {
   const new({super.key});
@@ -24,27 +26,43 @@ class AuthStep4 extends StatelessWidget {
           style: TextStyle(color: ColorManager.grey, fontSize: 16),
         ),
         SizedBox(height: 40),
-        Form(
-          child: Column(
-            spacing: 20,
-            children: [
-              CustomTextFormField(
-                label: "PRIMARY CONTACT NAME",
-                hintText: "E.g Bldr Shittu",
-                prefix: Icon(Icons.person_outline),
-              ),
-              CustomTextFormField(
-                label: "PRIMARY CONTACT PHONE",
-                hintText: "+234 801 234 5678",
-                prefix: Icon(Icons.phone_outlined),
-              ),
-              CustomTextFormField(
-                label: "RELATIONSHIP",
-                hintText: "Father",
-                prefix: Icon(Icons.people_outlined),
-              ),
-            ],
-          ),
+        Consumer<AuthProvider>(
+          builder: (context, state, _) {
+            return Column(
+              spacing: 20,
+              children: [
+                CustomTextFormField(
+                  controller: state.contactName,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Required";
+                    }
+                    return null;
+                  },
+                  label: "PRIMARY CONTACT NAME",
+                  hintText: "E.g Bldr Shittu",
+                  prefix: Icon(Icons.person_outline),
+                ),
+                CustomTextFormField(
+                  controller: state.contactPhoneNumber,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Required";
+                    }
+                    return null;
+                  },
+                  label: "PRIMARY CONTACT PHONE",
+                  hintText: "+234 801 234 5678",
+                  prefix: Icon(Icons.phone_outlined),
+                ),
+                CustomTextFormField(
+                  label: "RELATIONSHIP",
+                  hintText: "Father",
+                  prefix: Icon(Icons.people_outlined),
+                ),
+              ],
+            );
+          }
         ),
         SizedBox(height: 17),
         Container(
@@ -92,14 +110,6 @@ class AuthStep4 extends StatelessWidget {
                     ],
                   ),
                 ),
-                // child: Text(
-                //   "We'll send a verification link. Check your inbox.",
-                //   style: TextStyle(
-                //     color: ColorManager.black1,
-                //     fontSize: 14,
-                //     fontWeight: FontWeight.normal,
-                //   ),
-                // ),
               ),
             ],
           ),
