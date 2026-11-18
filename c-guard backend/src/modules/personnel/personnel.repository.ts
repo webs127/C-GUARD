@@ -144,7 +144,15 @@ export async function updateProfile(
      JOIN users u ON u.id = p.user_id
      LEFT JOIN user_roles ur ON ur.user_id = u.id
      LEFT JOIN roles r ON r.id = ur.role_id
-     GROUP BY u.id, p.user_id`,
+     GROUP BY
+       u.id,
+       p.user_id,
+       p.first_name,
+       p.last_name,
+       p.phone,
+       p.job_title,
+       p.created_at,
+       p.updated_at`,
     values,
   );
   return result.rows[0] ?? null;

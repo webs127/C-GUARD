@@ -2,11 +2,21 @@ import { Router } from 'express';
 import { checkDatabaseConnection } from '../config/database';
 import { ok } from '../common/utils/response';
 import { authRouter } from '../modules/auth/auth.routes';
+import { campRouter } from '../modules/camps/camp.routes';
+import {
+  corpsMemberRouter,
+  emergencyContactRouter,
+} from '../modules/corps-members/corps-member.routes';
+import { personnelRouter } from '../modules/personnel/personnel.routes';
 import { rbacRouter } from '../modules/rbac/rbac.routes';
 
 export const apiRouter = Router();
 
 apiRouter.use('/auth', authRouter);
+apiRouter.use('/corps-members', corpsMemberRouter);
+apiRouter.use('/emergency-contacts', emergencyContactRouter);
+apiRouter.use('/personnel', personnelRouter);
+apiRouter.use('/camps', campRouter);
 apiRouter.use('/rbac', rbacRouter);
 
 apiRouter.get('/health', async (_req, res, next) => {
