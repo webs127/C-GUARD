@@ -470,7 +470,7 @@ packages:
     source: hosted
     version: "1.1.0"
   permission_handler:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: permission_handler
       sha256: e6bcecadfe40df6b888141f23cbaf6ba6c3da49fb33f6ff887d060dd48544fbd
@@ -550,7 +550,7 @@ packages:
     source: hosted
     version: "3.4.3"
   routing_client_dart:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: routing_client_dart
       sha256: "0aa44f6a451dbb7ac1f9a960520504f7bc1a9721ca4097e5b279dcc75531c89e"

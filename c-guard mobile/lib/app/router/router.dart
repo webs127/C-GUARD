@@ -12,6 +12,7 @@ import 'package:c_guard/feature/navigation/profile/presentation/profile.dart';
 import 'package:c_guard/feature/onboarding/presentation/onboarding.dart';
 import 'package:c_guard/feature/splash/presentation/splash.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:go_router/go_router.dart';
 
 import 'route_constants.dart';
@@ -171,7 +172,9 @@ class AppRouter {
                     pageBuilder: (context, state) {
                       return CustomTransitionPage(
                         key: state.pageKey,
-                        child: const FullMapView(),
+                        child: FullMapView(
+                          destination: state.extra! as GeoPoint,
+                        ),
                         transitionsBuilder:
                             (context, animation, secondaryAnimation, child) {
                               return FadeTransition(

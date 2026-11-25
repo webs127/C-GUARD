@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigate() {
-    context.pushReplacementNamed(RouteConstants.onboarding);
+    context.pushReplacementNamed(RouteConstants.mainNavigation);
   }
 
   @override
