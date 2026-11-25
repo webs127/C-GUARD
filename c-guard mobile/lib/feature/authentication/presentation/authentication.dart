@@ -1,9 +1,11 @@
+import 'package:c_guard/app/router/route_constants.dart';
 import 'package:c_guard/core/managers/color_manager.dart';
 import 'package:c_guard/feature/authentication/presentation/login/login.dart';
 import 'package:c_guard/feature/authentication/widgets/custom_background.dart';
 import 'package:c_guard/providers/auth_provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class Authentication extends StatefulWidget {
@@ -80,7 +82,7 @@ class _AuthenticationState extends State<Authentication> {
                                             ),
                                             color: i <= state.currentStep
                                                 ? ColorManager.blue
-                                                : ColorManager.grey,
+                                                : ColorManager.border,
                                           ),
                                         ),
                                       ),
@@ -110,8 +112,14 @@ class _AuthenticationState extends State<Authentication> {
                         context.watch<AuthProvider>().currentStep ==
                             context.watch<AuthProvider>().length - 1
                         ? () {
-                          context.read<AuthProvider>().validate();
-                           // context.pushNamed(RouteConstants.accountCreated);
+                            bool isValid = context
+                                .read<AuthProvider>()
+                                .validate();
+                            isValid
+                                ? context.pushNamed(
+                                    RouteConstants.accountCreated,
+                                  )
+                                : print("Not Validated");
                           }
                         : () {
                             context.read<AuthProvider>().nextStep();

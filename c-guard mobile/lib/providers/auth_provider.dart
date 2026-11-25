@@ -87,9 +87,11 @@ class AuthProvider with ChangeNotifier {
     orientationCamp.text = member.orientationCamp;
   }
 
-  void validate() {
+  bool validate() {
     if (!formKey.currentState!.validate()) {
+      return false;
     } else {
+      return true;
     }
   }
 }

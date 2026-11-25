@@ -2,6 +2,7 @@ import 'package:c_guard/app/router/router.dart';
 import 'package:c_guard/feature/navigation/journey/widgets/requirement_card.dart';
 import 'package:c_guard/providers/auth_provider.dart';
 import 'package:c_guard/providers/main_navigation_provider.dart';
+import 'package:c_guard/providers/map_provider.dart';
 import 'package:c_guard/providers/onboarding_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => MainNavigationProvider()),
         ChangeNotifierProvider(create: (_) => RequirementCardProvider()),
+        ChangeNotifierProvider(create: (_) => MapProvider()),
       ],
       child: MaterialApp.router(
         title: 'C-GUARD',
